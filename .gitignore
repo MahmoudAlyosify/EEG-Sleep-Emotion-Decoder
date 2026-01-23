@@ -1,3 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Data (Don't upload large datasets to GitHub)
+*.mat
+*.h5
+data/training/
+data/testing/
+
+# Jupyter
+.ipynb_checkpoints
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
