@@ -1,34 +1,23 @@
-# 🧠 EEG Sleep Emotion Decoder
+# EEG Sleep-Emotion Decoder: Hybrid Ensemble Pipeline
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)](https://www.tensorflow.org/)
+A comprehensive deep learning and Riemannian Geometry hybrid pipeline for EEG-based Emotional Memory Classification with time-resolved predictions.
 
 ## 📌 Project Overview
-This repository contains a state-of-the-art (SOTA) solution for the **EEG Emotional Memory Classification Challenge**. The goal is to detect whether a neutral or emotional memory is being reactivated during NREM sleep based on 16-channel EEG signals.
 
-The pipeline achieves high performance on the **Window-Based AUC metric** by combining Temporal Convolutional Networks (Deep Learning) with Riemannian Tangent Space Mapping (Geometry-based ML), utilizing **Euclidean Alignment** for robust zero-shot generalization across subjects.
+This repository contains a state-of-the-art (SOTA) solution for the **EEG Emotional Memory Classification Challenge**. The pipeline achieves high performance by combining:
+
+1. **Deep Learning (Temporal Focus)**: Modified EEG-TCNet with dense prediction output for capturing temporal dynamics
+2. **Riemannian Geometry (Spatial Focus)**: Tangent Space Mapping + SVM for capturing covariance structure and spatial patterns
 
 ## 🚀 Key Features
-* **Hybrid Ensemble:** Combines the strengths of Deep Learning (Dense-TCN) and Riemannian Geometry (Tangent Space SVM/LR).
-* **Subject-Invariant Alignment:** Implements **Euclidean Alignment (EA)** to align covariance matrices of all subjects to a common reference, solving the domain shift problem.
-* **Dense Prediction:** Modified TCN architecture that outputs predictions for every timepoint (200Hz) without global pooling.
-* **Metric Optimization:** Advanced post-processing using Gaussian Smoothing to maximize the specific window-based AUC scoring metric.
 
-## 🛠️ Pipeline Architecture
-
-1.  **Preprocessing:**
-    * Bandpass Filter (0.5Hz - 40Hz).
-    * Euclidean Alignment ($\tilde{X}_i = R^{-1/2} X_i$).
-2.  **Model A (Temporal):**
-    * Dense-TCN with Dilated Convolutions.
-    * Input: `(16, 200)` -> Output: `(200, 1)`.
-3.  **Model B (Spatial):**
-    * Sliding Window Covariance Estimation.
-    * Tangent Space Mapping + Logistic Regression.
-4.  **Ensemble & Post-processing:**
-    * Weighted Average.
-    * Gaussian Smoothing ($\sigma=3.0$).
+- **Hybrid Ensemble**: Combines temporal (TCN) and spatial (Riemannian) approaches
+- **Advanced Preprocessing**: Bandpass filtering (0.5-40 Hz) + Euclidean Alignment (EA)
+- **Dense Predictions**: Outputs probability for each timepoint (200 predictions per trial)
+- **Subject-Invariant**: Euclidean Alignment ensures zero-shot generalization across subjects
+- **Attention Mechanisms**: Multi-scale temporal convolutions with attention gates
+- **Post-processing**: Gaussian smoothing for continuous high-probability windows
+- **Ensemble Optimization**: Weighted averaging (60% TCN + 40% Riemannian)
 
 ## 📦 Installation
 
